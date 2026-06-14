@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: Dmitry
+      labels: create-table
+      comment: "Create order_items table with foreign keys"
+      changes:
+        - createTable:
+            tableName: order_items
+            remarks: "Link table between orders and items"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  remarks: "Primary key"
+              - column:
+                  name: order_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_order_items_order
+                    referencedTableName: orders
+                    referencedColumnNames: id
+                    onDelete: CASCADE
+                  remarks: "Reference to orders table"
+              - column:
+                  name: item_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_order_items_item
+                    referencedTableName: items
+                    referencedColumnNames: id
+                    onDelete: RESTRICT
+                  remarks: "Reference to items table"
+              - column:
+                  name: quantity
+                  type: INT
+                  constraints:
+                    nullable: false
+                  remarks: "Quantity of items in order"
+
+      rollback:
+        - dropTable:
+            tableName: order_items
