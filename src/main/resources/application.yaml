@@ -30,8 +30,21 @@ spring:
     enabled: true
     drop-first: false
 
+user:
+  service:
+    url: ${USER_SERVICE_URL:http://localhost:8081}
+
 server:
   port: 8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,circuitbreakers,circuitbreakerevents
+  endpoint:
+    health:
+      show-details: always
 
 logging:
   level:

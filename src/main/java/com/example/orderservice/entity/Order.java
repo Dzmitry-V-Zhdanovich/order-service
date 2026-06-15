@@ -47,6 +47,7 @@ public class Order extends BaseEntity {
     @Column(name = "total_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalPrice;
 
+    @Builder.Default
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
