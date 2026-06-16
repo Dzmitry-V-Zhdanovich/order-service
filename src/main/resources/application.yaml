@@ -50,4 +50,4 @@ logging:
   level:
     liquibase: INFO
     com.zaxxer.hikari: DEBUG
-    com.innowise.orderservice: DEBUG
+    com.example.orderservice: DEBUG
