@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "items")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +25,7 @@ import java.util.UUID;
 public class Item extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    //@GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 

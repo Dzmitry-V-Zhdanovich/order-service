@@ -28,7 +28,7 @@ public interface OrderMapper {
     @Mapping(target = "deleted", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "items", source = "orderItems")
+    @Mapping(target = "items", ignore = true)
     void updateEntityFromRequest(@MappingTarget Order order, UpdateOrderRequest request);
 
     @Mapping(target = "orderItems", source = "items")
@@ -38,10 +38,11 @@ public interface OrderMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "order", ignore = true)
+    @Mapping(target = "item.id", source = "itemId")
     OrderItem toOrderItem(CreateOrderRequest.OrderItemRequest itemRequest);
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "itemId", source = "id")
+    @Mapping(target = "id", source = "orderItem.id")
+    @Mapping(target = "itemId", source = "orderItem.item.id")
     @Mapping(target = "quantity", source = "quantity")
     OrderResponse.OrderItemResponse toOrderItemResponse(OrderItem orderItem);
 

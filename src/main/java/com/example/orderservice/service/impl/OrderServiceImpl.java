@@ -151,7 +151,6 @@ public class OrderServiceImpl implements OrderService {
         for (UpdateOrderRequest.OrderItemUpdateRequest itemUpdate : itemUpdates) {
             if (itemUpdate.getId() != null && existingItemsMap.containsKey(itemUpdate.getId())) {
                 OrderItem existingItem = existingItemsMap.get(itemUpdate.getId());
-                existingItem.setId(itemUpdate.getItemId());
                 existingItem.setQuantity(itemUpdate.getQuantity());
             } else if (itemUpdate.getId() == null) {
                 OrderItem newItem = OrderItem.builder()
