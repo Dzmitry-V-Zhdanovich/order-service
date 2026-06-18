@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Dmitry
+      labels: create-table
+      comment: "Create items table"
+      changes:
+        - createTable:
+            tableName: items
+            remarks: "Table with items / products"
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  remarks: "Primary key"
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                  remarks: "Item name"
+              - column:
+                  name: price
+                  type: DECIMAL(10,2)
+                  constraints:
+                    nullable: false
+                  remarks: "Item price"
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+                  constraints:
+                    nullable: false
+                  remarks: "Creation timestamp"
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+                  constraints:
+                    nullable: false
+                  remarks: "Last update timestamp"
+
+      rollback:
+        - dropTable:
+            tableName: items
